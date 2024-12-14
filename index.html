@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="style.css">
+    <title>Scroll_Animation</title>
+	</head>
+
+	<body class="body">
+    <div class="header"></div>
+		<div class="img" id="scroll-area">
+			<img src="img.svg">
+		</div>
+    <div class="footer"></div>
+
+		<script>
+      // 下までscroll
+			var speed = 1;
+      var interval = 10;//17
+      var scrollTop = document.body.scrollTop;
+
+      setInterval(function() {
+        var scroll = scrollTop + speed;
+		    window.scrollBy(0, scroll)
+		  },interval);
+
+      // scrollし終わったあと
+      const scrollHeight = Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+      );
+
+      // 一番下までスクロールした時の数値を取得
+      const pageMostBottom = scrollHeight - window.innerHeight;
+
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop >= pageMostBottom-100) {
+          // console.log('下までスクロール');
+          speed = -1;
+        }
+      });
+
+      // scroll topまで来たら
+      window.addEventListener("scroll", scroll);
+
+      function scroll(){
+	      scroll_position = window.pageYOffset;
+
+        if (scroll_position < 5){
+          speed = 1;
+        }
+      }
+
+		</script>
+	</body>
+</html>
